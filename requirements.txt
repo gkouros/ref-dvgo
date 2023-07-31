@@ -1,0 +1,14 @@
+numpy<1.24.0
+scipy
+tqdm
+lpips
+mmcv
+imageio
+imageio-ffmpeg
+opencv-python
+ipdb
+einops
+torch_efficient_distloss
+ipdb
+einops
+ninja
