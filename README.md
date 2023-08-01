@@ -7,6 +7,13 @@ Source code of the paper titled "Reflection-Aware Direct Voxel Grid Optimization
 ## Installation
 Simply run `$ bash install_env.sh`  to install the conda environment that is required to run the code.
 
+## Datasets
+This codebase is evaluated on two datasets that you can download from the links below:
+- [ref-shiny](https://storage.googleapis.com/gresearch/refraw360/ref.zip)
+- [smart-car](https://drive.google.com/file/d/16BDhyQJP4mcmFWaJoBBnvyMa1I3lr59o/view?usp=drive_link)
+
+All the scripts assume that the datasets are located in a directory called *data/* at the root of the repository.
+
 ## Training
 To train a model on a specific scene e.g. the car scene from the blender shiny dataset use the following command:
 ```shell
