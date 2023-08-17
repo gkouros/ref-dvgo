@@ -34,7 +34,17 @@ We gratefully acknowledge funding support from the Sim2Real2 project, in the con
 This codebase is heavily based on [dvgo](https://github.com/sunset1995/DirectVoxGO), [multinerf](https://github.com/google-research/multinerf), and [refnerf-pytorch](https://github.com/gkouros/refnerf-pytorch).
 
 ## Citation
-
+```latex
+@misc{kouros2023refdvgo,
+      title={Ref-DVGO: Reflection-Aware Direct Voxel Grid Optimization for an Improved Quality-Efficiency Trade-Off in Reflective Scene Reconstructio}, 
+      author={Georgios Kouros and Minye Wu and Sushruth Nagesh and Shubham Shrivastava and Punarjay Chakravarty and Tinne Tuytelaars},
+      year={2023},
+      eprint={2308.08530},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2308.08530}
+}
+```
 ```latex
 @inproceedings{kouros2023refdvgo,
 author    = {Georgios Kouros and Minye Wu and Sushruth Nagesh and Shubham Shrivastava and Punarjay Chakravarty and Tinne Tuytelaars},
