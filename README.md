@@ -47,7 +47,7 @@ This codebase is heavily based on [dvgo](https://github.com/sunset1995/DirectVox
 ```
 ```latex
 @misc{kouros2023refdvgo,
-      author={Georgios Kouros and Minye Wu and Sushruth Nagesh and Shubham Shrivastava and Punarjay Chakravarty and Tinne Tuytelaars},
+      author={Georgios Kouros and Minye Wu and Shubham Shrivastava and Sushruth Nagesh and Punarjay Chakravarty and Tinne Tuytelaars},
       title={Reflection-Aware Direct Voxel Grid Optimization for an Improved Quality-Efficiency Trade-Off in Reflective Scene Reconstruction},
       year={2023},
       url={https://github.com/gkouros/ref-dvgo}
