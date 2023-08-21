@@ -1,5 +1,5 @@
 # ref-dvgo
-## Reflection-Aware Direct Voxel Grid Optimization for an Improved Quality-Efficiency Trade-Off in Reflective Scene Reconstruction
+## Ref-DVGO: Reflection-Aware Direct Voxel Grid Optimization for an Improved Quality-Efficiency Trade-Off in Reflective Scene Reconstruction
 Source code of the paper titled "Reflection-Aware Direct Voxel Grid Optimization for an Improved Quality-Efficiency Trade-Off in Reflective Scene Reconstruction", to be presented at the TRICKY workshop of ICCV 2023.
 
 ![media/architecture.png](media/architecture.png)
