@@ -17,12 +17,12 @@ All the scripts assume that the datasets are located in a directory called *data
 ## Training
 To train a model on a specific scene e.g. the car scene from the blender shiny dataset use the following command:
 ```shell
-$ bash train.py ref_shiny/car <JOBID> <Optional ARGS>
+$ bash train.sh ref_shiny/car <JOBID> <Optional ARGS>
 ```
 You can provide command line arguments that overwrite the config file arguments like below:
 
 ```shell
-$ bash train.py ref_shiny/car 12345 fine_train.N_rand=4096 fine_train.N_iters=80000
+$ bash train.sh ref_shiny/car 12345 fine_train.N_rand=4096 fine_train.N_iters=80000
 ```
 
 Training with the default configuration takes around 30 minutes on average on an Nvidia TITAN V.
