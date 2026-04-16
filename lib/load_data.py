@@ -61,8 +61,7 @@ def load_data(args):
 
     elif args.dataset_type == 'blender':
         images, diffs, poses, render_poses, hwf, i_split = load_blender_data(
-            args.datadir, args.half_res, args.testskip, args.blender_radius,
-            args.load_diffuse)
+            args.datadir, args.half_res, args.testskip, args.blender_radius)
         print('Loaded blender', images.shape, render_poses.shape, hwf, args.datadir)
         i_train, i_val, i_test = i_split
 
@@ -73,12 +72,6 @@ def load_data(args):
                 images = images[...,:3]*images[...,-1:] + (1.-images[...,-1:])
             else:
                 images = images[...,:3]*images[...,-1:]
-
-        if args.load_diffuse and diffs.shape[-1] == 4:
-            if args.white_bkgd:
-                diffs = diffs[...,:3]*diffs[...,-1:] + (1.-diffs[...,-1:])
-            else:
-                diffs = diffs[...,:3]*diffs[...,-1:]
 
     elif args.dataset_type == 'blendedmvs':
         images, poses, render_poses, hwf, K, i_split = load_blendedmvs_data(args.datadir)
@@ -184,9 +177,6 @@ def load_data(args):
         images=images, depths=depths,
         irregular_shape=irregular_shape,
     )
-
-    if args.dataset_type == 'blender' and args.load_diffuse:
-        data_dict['diffuse'] = diffs
 
     return data_dict
 

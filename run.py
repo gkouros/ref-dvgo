@@ -283,12 +283,8 @@ def load_everything(args, cfg):
     # construct data tensor
     if data_dict['irregular_shape']:
         data_dict['images'] = [torch.FloatTensor(im, device='cpu') for im in data_dict['images']]
-        if cfg.data.load_diffuse:
-            data_dict['diffuse'] = [torch.FloatTensor(im, device='cpu') for im in data_dict['diffuse']]
     else:
         data_dict['images'] = torch.FloatTensor(data_dict['images'], device='cpu')
-        if cfg.data.load_diffuse:
-            data_dict['diffuse'] = torch.FloatTensor(data_dict['diffuse'], device='cpu')
 
     data_dict['poses'] = torch.Tensor(data_dict['poses'])
 
@@ -856,14 +852,12 @@ def main(args, cfg):
                 'render_normals': False,
                 'render_normals_pred': True,
                 'render_specular': True,
+                'render_features': False,
             },
         }
 
-    # specify whether to render and evaluate on diffuse or regular images
-    images_key = 'diffuse' if cfg.fine_train.diffuse_only else 'images'
-
     # render trainset and eval
-    if args.render_train or cfg.fine_train.diffuse_only:
+    if args.render_train:
         testsavedir = os.path.join(cfg.basedir, cfg.expname, f'render_train_{ckpt_name}')
         os.makedirs(testsavedir, exist_ok=True)
         print('All results are dumped into', testsavedir)
@@ -871,7 +865,7 @@ def main(args, cfg):
                 render_poses=data_dict['poses'][data_dict['i_train']],
                 HW=data_dict['HW'][data_dict['i_train']],
                 Ks=data_dict['Ks'][data_dict['i_train']],
-                gt_imgs=[data_dict[images_key][i].cpu().numpy() for i in data_dict['i_train']],
+                gt_imgs=[data_dict['images'][i].cpu().numpy() for i in data_dict['i_train']],
                 savedir=testsavedir, dump_images=args.dump_images or cfg.fine_train.diffuse_only,
                 eval_ssim=args.eval_ssim, eval_lpips_alex=args.eval_lpips_alex, eval_lpips_vgg=args.eval_lpips_vgg,
                 **render_viewpoints_kwargs)
@@ -905,7 +899,7 @@ def main(args, cfg):
                 render_poses=data_dict['poses'][data_dict['i_test']],
                 HW=data_dict['HW'][data_dict['i_test']],
                 Ks=data_dict['Ks'][data_dict['i_test']],
-                gt_imgs=[data_dict[images_key][i].cpu().numpy() for i in data_dict['i_test']],
+                gt_imgs=[data_dict['images'][i].cpu().numpy() for i in data_dict['i_test']],
                 savedir=testsavedir, dump_images=args.dump_images,
                 eval_ssim=args.eval_ssim, eval_lpips_alex=args.eval_lpips_alex, eval_lpips_vgg=args.eval_lpips_vgg,
                 **render_viewpoints_kwargs)

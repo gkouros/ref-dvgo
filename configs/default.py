@@ -62,6 +62,7 @@ coarse_train = dict(
     weight_rgbper=0.1,            # weight of per-point rgb loss
     weight_orientation=0.1,       # weight of orientation loss from Ref-NeRF
     weight_pred_normals=3e-4,     # weight of loss for supervising pred normals using density gradient normals
+    weight_depth=0.0,             # weight of depth supervision loss
     tv_every=1,                   # count total variation loss every tv_every step
     tv_after=0,                   # count total variation loss from tv_from step
     tv_before=0,                  # count total variation before the given number of iterations

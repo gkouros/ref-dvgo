@@ -34,7 +34,7 @@ def pose_spherical(theta, phi, radius):
     return c2w
 
 
-def load_blender_data(basedir, half_res=False, testskip=1, radius=4.0, load_diffuse=False):
+def load_blender_data(basedir, half_res=False, testskip=1, radius=4.0):
     splits = ['train', 'val', 'test']
     metas = {}
     blacklists = {}
@@ -58,7 +58,6 @@ def load_blender_data(basedir, half_res=False, testskip=1, radius=4.0, load_diff
 
     all_imgs = []
     all_poses = []
-    all_diffs = []
     counts = [0]
     for s in splits:
         meta = metas[s]
@@ -74,16 +73,10 @@ def load_blender_data(basedir, half_res=False, testskip=1, radius=4.0, load_diff
             fname = os.path.join(basedir, frame['file_path'] + '.png')
             imgs.append(imageio.imread(fname))
             poses.append(np.array(frame['transform_matrix']))
-            if load_diffuse:
-                dfname = fname.replace('.png', '_diffuse.png')
-                diffs.append(imageio.imread(dfname))
         imgs = (np.array(imgs) / 255.).astype(np.float32) # keep all 4 channels (RGBA)
         all_imgs.append(imgs)
         poses = np.array(poses).astype(np.float32)
         all_poses.append(poses)
-        if load_diffuse:
-            diffs = (np.array(diffs) / 255.).astype(np.float32) # keep all 4 channels (RGBA)
-            all_diffs.append(diffs)
 
         counts.append(counts[-1] + imgs.shape[0])
 
@@ -91,7 +84,6 @@ def load_blender_data(basedir, half_res=False, testskip=1, radius=4.0, load_diff
 
     imgs = np.concatenate(all_imgs, 0)
     poses = np.concatenate(all_poses, 0)
-    diffs = np.concatenate(all_diffs, 0) if load_diffuse else []
 
     H, W = imgs[0].shape[:2]
     camera_angle_x = float(meta['camera_angle_x'])

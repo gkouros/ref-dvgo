@@ -7,7 +7,6 @@ data = dict(
     datadir='./data/ref_shiny/ball',
     dataset_type='blender',
     white_bkgd=True,
-    load_diffuse=False,
 )
 
 coarse_train = dict(
